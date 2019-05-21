@@ -75,7 +75,8 @@ FILE= ./ft_putchar.c\
 	 ./ft_sqrt.c\
 	 ./ft_replace.c\
 	 ./ft_strtrimc.c\
-	 ./ft_strlen_chr.c
+	 ./ft_strlen_chr.c\
+	 ./ft_abs.c
 OBJ= $(FILE:.c=.o)
 NAME= libft.a
 
