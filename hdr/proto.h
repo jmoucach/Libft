@@ -1,0 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   proto.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jmoucach <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/09/19 15:03:28 by jmoucach          #+#    #+#             */
+/*   Updated: 2019/09/19 15:03:29 by jmoucach         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef PROTO_H
+# define PROTO_H
+
+#include "Wolf3d.h"
+
+/*
+** INIT
+*/
+
+short	init(t_data *data);
+void	create_renderer_and_texture(t_data *data);
+
+/*
+** Draw
+*/
+
+void setup_param(t_point pt_one, t_point pt_two, t_line_param *line_param);
+Uint32 *drawline(t_point pt_one, t_point pt_two, Uint32 *pixels);
+
+/*
+** Main
+*/
+
+void	close_all(t_data *data);
+
+#endif
