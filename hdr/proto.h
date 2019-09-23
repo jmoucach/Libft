@@ -42,4 +42,11 @@ int	create_box_list(t_box **box);
 
 Uint32 *draw_rect_to_sdl(t_point pt_one, t_point pt_two, Uint32 *pixels, int colour);
 
+/*
+** Raycast
+*/
+
+Uint32	*cast_ray(t_box *box, Uint32 *pixels);
+short	check_hit(t_point map, t_box *box);
+
 #endif

@@ -27,6 +27,7 @@ void box_toggle_state(t_point pos, t_box **box)
 	}
 	if (*box)
 	{
+		printf("box id:%d position:x:%d y:%d value:%d\n", (*box)->id, (*box)->position.x/16, (*box)->position.y/16, (*box)->exist);
 		if ((*box)->exist == 1)
 			(*box)->exist = 0;
 		else

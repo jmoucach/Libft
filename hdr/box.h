@@ -15,7 +15,7 @@
 
 # include "Wolf3d.h"
 
-# define BOX_SIZE 32
+# define BOX_SIZE 16
 
 t_box	*box_new(t_point position, short length, int id);
 t_box *box_add_back(t_box *box, t_box *new_box, t_point pt, int id);

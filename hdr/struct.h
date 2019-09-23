@@ -49,8 +49,10 @@ typedef	struct		s_box
 
 typedef	struct		s_player
 {
-	t_point position;
-	t_point direction;
+	double	posX;
+	double posY;
+	double dirX;
+	double dirY;
 	double	planeX;
 	double	planeY;
 }					t_player;

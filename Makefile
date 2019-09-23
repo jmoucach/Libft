@@ -34,6 +34,7 @@ SRC= init/main.c\
 	 init/init.c\
 	 draw/drawline.c\
 	 draw/draw_rect_to_sdl.c\
+	 draw/raycast.c\
 	 boxes/box_add_back.c\
 	 boxes/box_new.c\
 	 boxes/box_toggle_state.c\
