@@ -27,12 +27,19 @@ void	create_renderer_and_texture(t_data *data);
 */
 
 void setup_param(t_point pt_one, t_point pt_two, t_line_param *line_param);
-Uint32 *drawline(t_point pt_one, t_point pt_two, Uint32 *pixels);
+Uint32 *drawline(t_point pt_one, t_point pt_two, Uint32 *pixels, int colour);
 
 /*
 ** Main
 */
 
-void	close_all(t_data *data);
+void	close_all(t_data *data, t_box **box);
+int	create_box_list(t_box **box);
+
+/*
+** Draw Rect to SDL
+*/
+
+Uint32 *draw_rect_to_sdl(t_point pt_one, t_point pt_two, Uint32 *pixels, int colour);
 
 #endif

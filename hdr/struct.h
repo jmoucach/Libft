@@ -14,7 +14,7 @@
 # define STRUCT_H
 # include "Wolf3d.h"
 
-typedef	struct		data
+typedef	struct		s_data
 {
 	SDL_Window		*window;
 	SDL_Renderer	*renderer;
@@ -24,18 +24,35 @@ typedef	struct		data
 	short			quit;
 }					t_data;
 
-typedef	struct		point
+typedef	struct		s_point
 {
 	int				x;
 	int				y;
 }					t_point;
 
-typedef	struct		line_param
+typedef	struct		s_line_param
 {
 	t_point			diff;
 	t_point			inc;
 	int				error;
 	int				off;
 }					t_line_param;
+
+typedef	struct		s_box
+{
+	t_point			position;
+	int				id;
+	short			length;
+	short			exist;
+	struct	s_box	*next;
+}					t_box;
+
+typedef	struct		s_player
+{
+	t_point position;
+	t_point direction;
+	double	planeX;
+	double	planeY;
+}					t_player;
 
 #endif

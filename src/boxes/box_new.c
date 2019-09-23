@@ -1,26 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Wolf3d.h                                           :+:      :+:    :+:   */
+/*   box_new.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoucach <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/19 14:10:43 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/09/19 14:10:46 by jmoucach         ###   ########.fr       */
+/*   Created: 2019/09/23 11:49:36 by jmoucach          #+#    #+#             */
+/*   Updated: 2019/09/23 11:49:37 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WOLF3D_H
-# define WOLF3D_H
+#include "../../hdr/Wolf3d.h"
 
-# include "../SDL2/Headers/SDL.h"
-# include "struct.h"
-# include "proto.h"
-# include "box.h"
-# include "../libft/libft.h"
-# include <math.h>
+t_box	*box_new(t_point position, short length, int id)
+{
+	t_box	*box;
 
-# define SCREEN_WIDTH 640
-# define SCREEN_HEIGHT 480
-
-#endif
+	if (!(box = (t_box*)malloc(sizeof(t_box))))
+	{
+		return (NULL);
+	}
+	else
+	{
+		box->position = position;
+		box->length = length;
+		box->exist = 0;
+		box->id = id;
+		box->next = NULL;
+	}
+	return (box);
+}

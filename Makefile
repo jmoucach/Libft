@@ -32,18 +32,25 @@ CFLAGS= -Wall -Wextra -Werror
 SRC_DIR= src/
 SRC= init/main.c\
 	 init/init.c\
-	 draw/drawline.c
+	 draw/drawline.c\
+	 draw/draw_rect_to_sdl.c\
+	 boxes/box_add_back.c\
+	 boxes/box_new.c\
+	 boxes/box_toggle_state.c\
+	 boxes/box_delete.c\
+	 boxes/box_show_to_sdl.c
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 OBJ_DIR= obj/
 OBJ= $(SRC:.c=.o)
-OBJ_SUBDIRS= init draw
+OBJ_SUBDIRS= init draw boxes
 OBJS= $(addprefix $(OBJ_DIR), $(OBJ))
 SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
-LIB= SDL2/SDL2\
+LIB= ./SDL2/SDL2\
 	 -L libft -lft
 INCLUDES=	hdr/Wolf3d.h\
 			hdr/proto.h\
-			hdr/struct.h
+			hdr/struct.h\
+			hdr/box.h
 
 ###############################################################################
 #								Rules										  #

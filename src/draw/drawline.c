@@ -21,15 +21,18 @@ void setup_param(t_point pt_one, t_point pt_two, t_line_param *line_param)
 	line_param->inc.y = (pt_one.y < pt_two.y ? 1 : -1);
 }
 
-Uint32 *drawline(t_point pt_one, t_point pt_two, Uint32 *pixels)
+Uint32 *drawline(t_point pt_one, t_point pt_two, Uint32 *pixels, int colour)
 {
 	t_point pt;
 	t_line_param line_param;
+	Uint32 *pix;
 
+	setup_param(pt_one, pt_two, &line_param);
+	pix = pixels;
 	pt = pt_one;
 	while (pt.x != pt_two.x || pt.y != pt_two.y)
 	{
-		pixels[pt.x + pt.y * SCREEN_WIDTH] = 255;
+		pix[pt.x + pt.y * SCREEN_WIDTH] = colour;
 		if ((line_param.error = line_param.off * 2) > -line_param.diff.y)
 		{
 			line_param.off -= line_param.diff.y;
@@ -41,6 +44,6 @@ Uint32 *drawline(t_point pt_one, t_point pt_two, Uint32 *pixels)
 			pt.y += line_param.inc.y;
 		}
 	}
-	pixels[pt.x + pt.y * SCREEN_WIDTH] = 255;
-	return (pixels);
+	pix[pt.x + pt.y * SCREEN_WIDTH] = colour;
+	return (pix);
 }
