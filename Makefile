@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jmoucach <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/26 16:03:44 by jmoucach          #+#    #+#              #
-#    Updated: 2019/04/26 16:03:46 by jmoucach         ###   ########.fr        #
+#    Updated: 2019/09/30 18:26:50 by jmoucach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,24 +34,18 @@ SRC= init/main.c\
 	 init/init.c\
 	 draw/drawline.c\
 	 draw/draw_rect_to_sdl.c\
-	 draw/raycast.c\
-	 boxes/box_add_back.c\
-	 boxes/box_new.c\
-	 boxes/box_toggle_state.c\
-	 boxes/box_delete.c\
-	 boxes/box_show_to_sdl.c
+	 map/new_map.c
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 OBJ_DIR= obj/
 OBJ= $(SRC:.c=.o)
-OBJ_SUBDIRS= init draw boxes
+OBJ_SUBDIRS= init draw map
 OBJS= $(addprefix $(OBJ_DIR), $(OBJ))
 SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
 LIB= ./SDL2/SDL2\
 	 -L libft -lft
 INCLUDES=	hdr/Wolf3d.h\
 			hdr/proto.h\
-			hdr/struct.h\
-			hdr/box.h
+			hdr/struct.h
 
 ###############################################################################
 #								Rules										  #
@@ -80,7 +74,7 @@ clean:
 		echo "$(RED)- Deleting $$i$(WHITE)"; \
 	done;
 	@ echo "$(GREEN)Objects deleted$(WHITE)"
-	@ rm -rf $(OBJ)
+	@ rm -rf $(OBJS)
 
 fclean: clean
 	@ echo "$(BLUE)Cleaning libft$(WHITE)"

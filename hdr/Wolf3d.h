@@ -16,11 +16,14 @@
 # include "../SDL2/Headers/SDL.h"
 # include "struct.h"
 # include "proto.h"
-# include "box.h"
 # include "../libft/libft.h"
+
+# include <fcntl.h>
 # include <math.h>
 
 # define SCREEN_WIDTH 640
 # define SCREEN_HEIGHT 480
+
+
 
 #endif

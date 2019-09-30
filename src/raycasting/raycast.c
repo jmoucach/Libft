@@ -12,36 +12,26 @@
 
 #include "../../hdr/Wolf3d.h"
 
+
+
 short	check_hit(t_point map, t_box *box)
 {
 	while (box != NULL)
 	{
-		if (box->id == (map.x  - map.x % BOX_SIZE) + (map.y - map.y % BOX_SIZE) * (SCREEN_WIDTH / BOX_SIZE) && box->exist)
+		if (box->id == ceil((double)(map.x/BOX_SIZE)) + ceil((double)(map.y / BOX_SIZE)) * (SCREEN_WIDTH / BOX_SIZE) && box->exist)
+		{
+		// printf("map.x:%d, map.y:%d, box id:%d\n", map.x, map.y, box->id);
+			// SDL_Delay(20000);
 			return 1;
+		}
 		box = box->next;
 	}
 	return (0);
 }
 
-Uint32	*cast_ray(t_box *box, Uint32 *pixels)
+void	cast_ray(int worldMap[30][40], t_data *data, t_player player)
 {
-	Uint32 *pix;
-
-	pix = pixels;
-	t_player player;
-
-	player.posX = 50;
-	player.posY = 50;
-	player.dirX = -1;
-	player.dirY = 0;
-	player.planeX = 0;
-	player.planeY = 0.66;
-
-	// double time;
-	// double old_time;
-
 	int x;
-	// int y;
 
 	double cameraX;
 
@@ -67,43 +57,43 @@ Uint32	*cast_ray(t_box *box, Uint32 *pixels)
 
 	int colour;
 
+
 	colour = 255;
 	x = 0;
 	while (x < SCREEN_WIDTH)
 	{
 		cameraX = 2 * x / (SCREEN_WIDTH) - 1;
-		rayDirX = player.dirX + player.planeX * cameraX;
-		rayDirY = player.dirY + player.planeY * cameraX;
+		rayDirX = player.dir.x + player.plane.x * cameraX;
+		rayDirY = player.dir.y + player.plane.y * cameraX;
 
-		map.x = player.posX;
-		map.y = player.posY;
+		map.x = player.pos.x;
+		map.y = player.pos.y;
 
 		deltaDistX = ft_abs(1 / rayDirX);
 		deltaDistY = ft_abs(1 / rayDirY);
 		if (rayDirX < 0)
 		{
 			step.x = -1;
-			sideDistX = (player.posX - map.x) * deltaDistX;
+			sideDistX = (player.pos.x - map.x) * deltaDistX;
 		}
 		 else
 		{
 			step.x = 1;
-			sideDistX = (map.x + 1.0 - player.posX) * deltaDistX;
+			sideDistX = (map.x + 1.0 - player.pos.x) * deltaDistX;
 		}
 		if (rayDirY < 0)
 		{
 			step.y = -1;
-			sideDistY = (player.posY - map.y) * deltaDistY;
+			sideDistY = (player.pos.y - map.y) * deltaDistY;
 		}
 		else
 		{
 			step.y = 1;
-			sideDistY = (map.y + 1.0 - player.posY) * deltaDistY;
+			sideDistY = (map.y + 1.0 - player.pos.y) * deltaDistY;
 		}
-
+		hit = 0;
 		while (hit == 0)
 		{
-			printf("no hit\n");
 			if (sideDistX < sideDistY)
 			{
 				sideDistX += deltaDistX;
@@ -116,14 +106,19 @@ Uint32	*cast_ray(t_box *box, Uint32 *pixels)
 				map.y += step.y;
 				side = 1;
 			}
-			if (check_hit(map, box) > 0)
+			// if (check_hit(map, box) > 0)
+			// printf("map.x:%d y:%d\n", map.x, map.y);
+			if (map.x >= 0 && map.y >= 0 && worldMap[map.x][map.y] > 0)
 				hit = 1;
 		}
 		if (side == 0)
-			perpWallDist = (map.x - player.posX + (1-step.x)/2) / rayDirX;
+			perpWallDist = (map.x - player.pos.x + (1-step.x)/2) / rayDirX;
 		else	
-			perpWallDist = (map.x - player.posY + (1 - step.y)/2) / rayDirY;
+			perpWallDist = (map.x - player.pos.y + (1 - step.y)/2) / rayDirY;
+		// printf("perpWallDist:%f, mapX:%d\n", perpWallDist, map.x);
 		lineHeight = (SCREEN_HEIGHT / perpWallDist);
+		if (lineHeight < 0)
+			lineHeight = 0;
 		drawStart = -lineHeight / 2 + SCREEN_HEIGHT / 2;
 		if (drawStart < 0)
 			drawStart = 0;
@@ -132,8 +127,9 @@ Uint32	*cast_ray(t_box *box, Uint32 *pixels)
 			drawEnd = SCREEN_HEIGHT - 1;
 		if (side == 1)
 			colour /= 2;
-		pix = drawline((t_point){x, drawStart}, (t_point){x, drawEnd}, pix, colour);
+			 printf("x:%d drawStart:%d, drawEnd:%d, lineHeight:%d\n", x, drawStart, drawEnd, lineHeight);
+		drawline((t_point){x, drawStart}, (t_point){x, drawEnd}, data, colour);
+
 		x++;
 	}
-	return (pix);
 }

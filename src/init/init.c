@@ -12,12 +12,19 @@
 
 #include "../../hdr/Wolf3d.h"
 
-void	create_renderer_and_texture(t_data *data)
+void	set_values(t_data *data, t_player *player)
 {
-	data->renderer = SDL_CreateRenderer(data->window, -1, 0);
-	data->texture = SDL_CreateTexture(data->renderer,
-		SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STATIC,
-		SCREEN_WIDTH, SCREEN_HEIGHT);
+	player->pos.x = 5;
+	player->pos.y = 5;
+	player->dir.x = 1;
+	player->dir.y = 0;
+	player->plane.x = 0;
+	player->plane.y = 0.66;
+	data->surface = NULL;
+	data->window = NULL;
+	data->mapSize.x = 0;
+	data->mapSize.y = 0;
+	data->quit = 0;
 }
 
 short	init(t_data *data)
@@ -37,7 +44,7 @@ short	init(t_data *data)
 		SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);
 		if (data->window != NULL)
 		{
-			create_renderer_and_texture(data);
+			data->surface = SDL_GetWindowSurface(data->window);
 		}
 		else
 		{

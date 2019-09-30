@@ -3,165 +3,100 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucach <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 14:14:06 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/09/19 14:14:09 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/09/30 18:25:42 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../hdr/Wolf3d.h"
 
-void close_all(t_data *data, t_box **box)
+void close_all(t_data *data)
 {
-	box_delete(box);
-	SDL_DestroyRenderer(data->renderer);
-	SDL_DestroyTexture(data->texture);
+	SDL_FreeSurface(data->surface);
+	data->surface = NULL;
 	SDL_DestroyWindow(data->window);
+	data->window = NULL;
 	SDL_Quit();
-}
-
-void fill_box(t_box **box)
-{
-	int worldMap[30][40] =
-		{
-			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1,1,1,1,1,1,1,1,1,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 2, 2, 2, 2, 2, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 2, 2, 0, 2, 2, 0, 0, 0, 0, 3, 0, 3, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 4, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 4, 0, 0, 0, 0, 5, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 4, 0, 4, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 4, 0, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,0, 1},
-			{1, 4, 4, 4, 4, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0,0,0,0,0,0,0,0,1},
-			{1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,1,1,1,1,1,1,1,1,1,1}};
-	int x = 0;
-	int y;
-	t_box *first = (*box);
-	(*box) = (*box)->next;
-	while (x < 30)
-	{
-		y = 0;
-		while (y < 40)
-		{
-			if (worldMap[x][y] > 0)
-				(*box)->exist = 1;
-			else
-				(*box)->exist = 0;
-			y++;
-				(*box) = (*box)->next;
-		}
-		x++;
-	}
-	(*box) = first;
-}
-
-int create_box_list(t_box **box)
-{
-	t_point pt;
-	int boxNumberWidth;
-	int boxNumberHeight;
-	t_box *new_box;
-	int i;
-
-	new_box = NULL;
-	pt.y = 0;
-	i = 0;
-	boxNumberWidth = SCREEN_WIDTH / BOX_SIZE;
-	boxNumberHeight = SCREEN_HEIGHT / BOX_SIZE;
-	(*box) = box_new((t_point){0, 0}, BOX_SIZE, -1);
-	printf("Initialization of boxes\n");
-	while (pt.y < SCREEN_HEIGHT)
-	{
-		pt.x = 0;
-		while (pt.x < SCREEN_WIDTH)
-		{
-			if (!(*box = box_add_back(*box, new_box, pt, i)))
-				return 0;
-			pt.x += BOX_SIZE;
-			i++;
-		}
-		pt.y += BOX_SIZE;
-	}
-	fill_box(box);
-	return 1;
-}
-
-void check_box_list(t_box *box)
-{
-	int i;
-
-	i = 0;
-	while (box)
-	{
-		printf("Box number %d : postion: x:%d, y:%d\n", i, box->position.x, box->position.y);
-
-		i++;
-		box = box->next;
-	}
 }
 
 int main(int ac, char **av)
 {
-
 	t_data data;
-	t_box *box;
-	(void)ac;
-	(void)av;
-	data.renderer = NULL;
-	data.texture = NULL;
-	data.window = NULL;
-	data.quit = 0;
-	data.pixels = (Uint32 *)malloc(sizeof(Uint32) * SCREEN_WIDTH * SCREEN_HEIGHT);
-	if (init(&data))
+	t_player player;
+
+	// double oldDirX;
+	// double oldPlaneX;
+	if (ac == 2)
 	{
-		if (create_box_list(&box))
+		set_values(&data, &player);
+		if (init(&data))
 		{
-			while (!data.quit)
+			if (new_map(&data, av[1]))
 			{
-				while (SDL_PollEvent(&data.event))
+				while (!data.quit)
 				{
-					if (data.event.type == SDL_QUIT)
-						data.quit = 1;
-					// if (data.event.type == SDL_MOUSEBUTTONDOWN)
-					// 	if (data.event.button.button == SDL_BUTTON_LEFT)
-					// 		box_toggle_state((t_point){data.event.motion.x / BOX_SIZE,
-					// 								   data.event.motion.y / BOX_SIZE},
-					// 						 &box);
+					// player.walkSpeed = 5;
+					// player.rotSpeed = 1;
+					while (SDL_PollEvent(&data.event))
+					{
+						if (data.event.type == SDL_QUIT)
+							data.quit = 1;
+						// if (data.event.type == SDL_MOUSEBUTTONDOWN)
+						// if (data.event.button.button == SDL_BUTTON_LEFT)
+						// 	box_toggle_state((t_point){data.event.motion.x / BOX_SIZE,
+						// 							   data.event.motion.y / BOX_SIZE},
+						// 					 &box);
+						// if (data.event.type == SDL_KEYDOWN)
+						// {
+						// 	if (data.event.key.keysym.sym == SDLK_UP)
+						// 	{
+						// 		if (player.pos.x + player.dir.x * player.walkSpeed > 0 && player.pos.x + player.dir.x * player.walkSpeed < 40 && worldMap[(int)(player.pos.x + player.dir.x * player.walkSpeed)][(int)(player.pos.y)] == 0)
+						// 			player.pos.x += player.dir.x * player.walkSpeed;
+						// 		if (player.pos.y + player.dir.y * player.walkSpeed > 0 && player.pos.y + player.dir.y * player.walkSpeed < 30 && worldMap[(int)(player.pos.x)][(int)(player.pos.y + player.dir.y * player.walkSpeed)] == 0)
+						// 			player.pos.y += player.dir.y * player.walkSpeed;
+						// 		printf("pos:x:%f,  y:%f\n", player.pos.x, player.pos.y);
+						// 	}
+						// 	if (data.event.key.keysym.sym == SDLK_DOWN)
+						// 	{
+						// 		if (player.pos.x - player.dir.x * player.walkSpeed > 0 && player.pos.x - player.dir.x * player.walkSpeed < 40 && worldMap[(int)(player.pos.x - player.dir.x * player.walkSpeed)][(int)(player.pos.y)] == 0)
+						// 			player.pos.x -= player.dir.x * player.walkSpeed;
+						// 		if (player.pos.y - player.dir.y * player.walkSpeed > 0 && player.pos.y - player.dir.y * player.walkSpeed < 30 && worldMap[(int)(player.pos.x)][(int)(player.pos.y - player.dir.y * player.walkSpeed)] == 0)
+						// 			player.pos.y -= player.dir.y * player.walkSpeed;
+						// 		printf("pos:x:%f,  y:%f\n", player.pos.x, player.pos.y);
+						// 	}
+						// 	if (data.event.key.keysym.sym == SDLK_RIGHT)
+						// 	{
+						// 		oldDirX = player.dir.x;
+						// 		player.dir.x = player.dir.x * cos(-player.rotSpeed) - player.dir.y * sin(-player.rotSpeed);
+						// 		player.dir.y = oldDirX * sin(-player.rotSpeed) + player.dir.y * cos(-player.rotSpeed);
+						// 		oldPlaneX = player.plane.x;
+						// 		player.plane.x = player.plane.x * cos(-player.rotSpeed) - player.plane.y * sin(-player.rotSpeed);
+						// 		player.plane.y = player.plane.x * sin(-player.rotSpeed) + player.plane.y * cos(-player.rotSpeed);
+						// 		printf("dir:x:%f,  y:%f\nplane:x:%f, y:%f\n", player.dir.x, player.dir.y, player.plane.x, player.plane.y);
+						// 	}
+						// 	if (data.event.key.keysym.sym == SDLK_LEFT)
+						// 	{
+						// 		oldDirX = player.dir.x;
+						// 		player.dir.x = player.dir.x * cos(player.rotSpeed) - player.dir.y * sin(player.rotSpeed);
+						// 		player.dir.y = oldDirX * sin(player.rotSpeed) + player.dir.y * cos(player.rotSpeed);
+						// 		oldPlaneX = player.plane.x;
+						// 		player.plane.x = player.plane.x * cos(player.rotSpeed) - player.plane.y * sin(player.rotSpeed);
+						// 		player.plane.y = player.plane.x * sin(player.rotSpeed) + player.plane.y * cos(player.rotSpeed);
+						// 		printf("dir:x:%f,  y:%f\nplane:x:%f, y:%f\n", player.dir.x, player.dir.y, player.plane.x, player.plane.y);
+						// 	}
+					}
+					SDL_UpdateWindowSurface(data.window);
 				}
-				// box_show_to_sdl(box, data.pixels);
-				data.pixels = cast_ray(box, data.pixels);
-				SDL_UpdateTexture(data.texture, NULL, data.pixels, SCREEN_WIDTH * sizeof(Uint32));
-				SDL_RenderClear(data.renderer);
-				SDL_RenderCopy(data.renderer, data.texture, NULL, NULL);
-				SDL_RenderPresent(data.renderer);
 			}
+			close_all(&data);
+			// print_map(&data);
 		}
-		close_all(&data, &box);
-	}
-	else
-	{
-		ft_putstr_fd("Error in initialization!", 2);
+		else
+		{
+			ft_putstr_fd("Error in initialization!", 2);
+		}
 	}
 	return (1);
 }

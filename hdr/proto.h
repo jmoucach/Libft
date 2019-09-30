@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   proto.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucach <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:03:28 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/09/19 15:03:29 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/09/30 18:25:46 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,33 +20,44 @@
 */
 
 short	init(t_data *data);
-void	create_renderer_and_texture(t_data *data);
+void	set_values(t_data *data, t_player *player);
 
 /*
 ** Draw
 */
 
+void	draw_rect_to_sdl(t_point pt_one, t_point pt_two, t_data *data, int colour);
 void setup_param(t_point pt_one, t_point pt_two, t_line_param *line_param);
-Uint32 *drawline(t_point pt_one, t_point pt_two, Uint32 *pixels, int colour);
+void	drawline(t_point pt_one, t_point pt_two, t_data *data, int colour);
 
 /*
 ** Main
 */
 
-void	close_all(t_data *data, t_box **box);
-int	create_box_list(t_box **box);
+void	close_all(t_data *data);
+
 
 /*
-** Draw Rect to SDL
+** New map
 */
 
-Uint32 *draw_rect_to_sdl(t_point pt_one, t_point pt_two, Uint32 *pixels, int colour);
+char *join_strings(char *s1, char *s2);
+short	count_lines_and_col(t_data *data, char *str);
+// short	get_map_size(t_data *data, char *str);
+short	new_map(t_data *data, char *title);
+
+/*
+** Fill map
+*/
+
+// void	print_map(t_data *data);
+// char *read_again(char *title);
+// short	fill_map(t_data *data, char *str);
 
 /*
 ** Raycast
 */
 
-Uint32	*cast_ray(t_box *box, Uint32 *pixels);
-short	check_hit(t_point map, t_box *box);
+void	cast_ray(int worldMap[30][40], t_data *data, t_player player);
 
 #endif
