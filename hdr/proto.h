@@ -6,7 +6,7 @@
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:03:28 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/09/30 18:25:46 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/10/01 17:50:18 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 */
 
 short	init(t_data *data);
-void	set_values(t_data *data, t_player *player);
+void	set_values(t_data *data);
 
 /*
 ** Draw
@@ -43,21 +43,34 @@ void	close_all(t_data *data);
 
 char *join_strings(char *s1, char *s2);
 short	count_lines_and_col(t_data *data, char *str);
-// short	get_map_size(t_data *data, char *str);
+short	allocate_map(t_data *data);
+char *read_map(int fd);
 short	new_map(t_data *data, char *title);
 
 /*
 ** Fill map
 */
 
-// void	print_map(t_data *data);
-// char *read_again(char *title);
-// short	fill_map(t_data *data, char *str);
+void	print_map(t_data data);
+short	fill_map(t_data *data, char *str);
+short	parse_map(char *str);
+
+/*
+** Draw map box
+*/
+
+void draw_map_box(t_data *data);
 
 /*
 ** Raycast
 */
 
-void	cast_ray(int worldMap[30][40], t_data *data, t_player player);
+void	cast_ray(t_data *data);
+
+/*
+** Event loop
+*/
+
+void	game_loop(t_data *data);
 
 #endif

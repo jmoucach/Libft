@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_rect_to_sdl.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucach <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/23 11:16:31 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/09/23 11:16:34 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/10/01 19:18:57 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	draw_rect_to_sdl(t_point pt_one, t_point pt_two,
 	end_point.y = (pt_one.y > pt_two.y ? pt_one.y : pt_two.y);
 	while (start_point.y++ < end_point.y)
 	{
-		drawline(start_point, (t_point){end_point.x - 1, start_point.y},
+		drawline(start_point, (t_point){end_point.x, start_point.y},
 					   data, colour);
 	}
 }

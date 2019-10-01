@@ -1,19 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   raycast.c                                          :+:      :+:    :+:   */
+/*   draw_map_box.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/23 18:19:42 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/10/01 17:58:06 by jmoucach         ###   ########.fr       */
+/*   Created: 2019/10/01 15:24:48 by jmoucach          #+#    #+#             */
+/*   Updated: 2019/10/01 15:31:42 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../hdr/Wolf3d.h"
 
-void	cast_ray(t_data *data)
+void draw_map_box(t_data *data)
 {
-	(void)data;
-	return ;
+	int x;
+	int y;
+	int colour;
+	int length;
+
+	length = data->box_length;
+	y = 0;
+	while (y < data->mapSize.y)
+	{
+		x = 0;
+		while (x < data->mapSize.x)
+		{
+			if (data->map[y][x] == 1)
+				colour = 0xff;
+			else
+				colour = 0xffffff;
+			draw_rect_to_sdl((t_point){x * length, y* length},
+			(t_point){x * length + length, y* length + length}, data, colour);
+			x++;
+		}
+		y++;
+	}
 }

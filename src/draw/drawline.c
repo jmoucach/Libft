@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   drawline.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucach <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 16:27:49 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/09/19 16:27:50 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/10/01 18:25:16 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ void	draw_to_pixel(t_data *data, int colour, t_point pt)
 	blue = 0;
 	green = 1;
 	red = 2;
-	SDL_LockSurface(data->surface);
+	if (SDL_MUSTLOCK(data->surface))
+		SDL_LockSurface(data->surface);
 	pixels[4*(data->surface->w * pt.y +pt.x) + red] = colour >> 16 & 0xff;
 	pixels[4*(data->surface->w * pt.y +pt.x) + green] = colour >> 8 & 0xff;
 	pixels[4*(data->surface->w * pt.y +pt.x) + blue] = colour & 0xff;
-	SDL_UnlockSurface(data->surface);
+	if (SDL_MUSTLOCK(data->surface))
+		SDL_UnlockSurface(data->surface);
 }
 
 void setup_param(t_point pt_one, t_point pt_two, t_line_param *line_param)

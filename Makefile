@@ -6,7 +6,7 @@
 #    By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/26 16:03:44 by jmoucach          #+#    #+#              #
-#    Updated: 2019/09/30 18:26:50 by jmoucach         ###   ########.fr        #
+#    Updated: 2019/10/01 17:51:30 by jmoucach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,11 +34,15 @@ SRC= init/main.c\
 	 init/init.c\
 	 draw/drawline.c\
 	 draw/draw_rect_to_sdl.c\
-	 map/new_map.c
+	 draw/draw_map_box.c\
+	 map/new_map.c\
+	 map/fill_map.c\
+	 raycasting/raycast.c\
+	 game/event_loop.c
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 OBJ_DIR= obj/
 OBJ= $(SRC:.c=.o)
-OBJ_SUBDIRS= init draw map
+OBJ_SUBDIRS= init draw map raycasting game
 OBJS= $(addprefix $(OBJ_DIR), $(OBJ))
 SUBDIRS= $(foreach dir, $(OBJ_SUBDIRS), $(OBJ_DIR)$(dir))
 LIB= ./SDL2/SDL2\

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucach <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 14:19:39 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/09/19 14:19:40 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/10/01 17:36:37 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef	struct		s_data
 	SDL_Window		*window;
 	SDL_Surface		*surface;
 	SDL_Event		event;
+	t_player		player;
 	int				**map;
 	t_point			mapSize;
 	int				box_length;
