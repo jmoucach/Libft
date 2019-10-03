@@ -6,7 +6,7 @@
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 15:24:48 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/10/01 15:31:42 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/10/03 14:19:15 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void draw_map_box(t_data *data)
 		x = 0;
 		while (x < data->mapSize.x)
 		{
-			if (data->map[y][x] == 1)
+			if (data->map[y][x].value == 1)
 				colour = 0xff;
 			else
 				colour = 0xffffff;

@@ -6,7 +6,7 @@
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 14:14:06 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/10/01 19:48:17 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/10/03 15:39:49 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,12 @@ void free_map(t_data *data)
 
 void close_all(t_data *data)
 {
-	if (data->surface)
-		SDL_FreeSurface(data->surface);
+	if (data->pixels)
+		free(data->pixels);
+	if (data->texture)
+		SDL_DestroyTexture(data->texture);
+	if (data->renderer)
+		SDL_DestroyRenderer(data->renderer);
 	if (data->window)
 		SDL_DestroyWindow(data->window);
 	SDL_Quit();
@@ -42,23 +46,11 @@ int main(int ac, char **av)
 		{
 			if (new_map(&data, av[1]))
 			{
-				while (!data.quit)
-				{
-					while (SDL_PollEvent(&data.event))
-					{
-						if (data.event.type == SDL_QUIT)
-							data.quit = 1;
-						if (data.event.type == SDL_KEYDOWN)
-							if (data.event.key.keysym.sym == SDLK_ESCAPE)
-								data.quit = 1;
-					}
-					// draw_map_box(&data);
-					SDL_UpdateWindowSurface(data.window);
-				}
-				free_map(&data);
+				game_loop(&data);
+				// free_map(&data);
 			}
-			printf("Avant de free\n");
 			close_all(&data);
+			// SDL_Quit();
 		}
 		else
 		{

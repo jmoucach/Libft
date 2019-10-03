@@ -6,7 +6,7 @@
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:03:28 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/10/01 17:50:18 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/10/03 15:23:21 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 ** INIT
 */
 
+short create_renderer_texture_and_pixels(t_data *data);
 short	init(t_data *data);
 void	set_values(t_data *data);
 
@@ -72,5 +73,31 @@ void	cast_ray(t_data *data);
 */
 
 void	game_loop(t_data *data);
+
+/*
+** Show player
+*/
+
+void	show_player(t_data *data);
+
+/*
+** New edge
+*/
+
+void	copy_edge_data(t_edge **tmp, t_edge*edge, int i);
+short new_edge_north(t_data *data, int x, int y);
+short new_edge_south(t_data *data, int x, int y);
+short new_edge_east(t_data *data, int x, int y);
+short new_edge_west(t_data *data, int x, int y);
+
+/*
+** Find edges
+*/
+
+short find_edge_north(t_data *data, int x, int y);
+short find_edge_south(t_data *data, int x, int y);
+short find_edge_east(t_data *data, int x, int y);
+short find_edge_west(t_data *data, int x, int y);
+short find_edges(t_data *data);
 
 #endif

@@ -23,7 +23,7 @@ short init(SDL_Window **win, SDL_Renderer **renderer, SDL_Texture **texture)
 		else
 		{
 			*renderer = SDL_CreateRenderer(*win, -1, 0);
-			*texture = SDL_CreateTexture(*renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STATIC, SCREEN_WIDTH, SCREEN_HEIGHT);
+			*texture = SDL_CreateTexture(*renderer, SDL_PIXELFORMAT_ARGB8888, SDL_TEXTUREACCESS_STREAMING, SCREEN_WIDTH, SCREEN_HEIGHT);
 		}
 	}
 	return (success);

@@ -6,7 +6,7 @@
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 14:51:49 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/10/01 15:23:51 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/10/03 14:17:42 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void print_map(t_data data)
 		j = 0;
 		while (j < data.mapSize.x)
 		{
-			printf("%d, ", data.map[i][j]);
+			printf("%d, ", data.map[i][j].value);
 			j++;
 		}
 		printf("\n");
@@ -60,7 +60,7 @@ short fill_map(t_data *data, char *str)
 	{
 		if (str[i] == '0' || str[i] == '1')
 		{
-			data->map[(i / 2) / data->mapSize.x][(i / 2) % data->mapSize.x] = str[i] - '0';
+			data->map[(i / 2) / data->mapSize.x][(i / 2) % data->mapSize.x].value = str[i] - '0';
 		}
 		i++;
 	}

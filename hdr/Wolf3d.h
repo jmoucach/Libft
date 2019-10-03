@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Wolf3d.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucach <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 14:10:43 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/09/19 14:10:46 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/10/03 14:36:12 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,10 @@
 # define SCREEN_WIDTH 640
 # define SCREEN_HEIGHT 480
 
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
 
 
 #endif
