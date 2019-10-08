@@ -6,7 +6,7 @@
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/25 11:55:03 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/10/03 12:03:56 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/10/08 19:18:34 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ void	show_player(t_data *data)
 	player = data->player;
 	pix = data->pixels;
 	
-	pix[(int)(player.pos.x + player.pos.y * SCREEN_WIDTH)] = 0xff0000;
-	pix[(int)(player.pos.x + 1 + player.pos.y * SCREEN_WIDTH)] = 0xff0000;
-	pix[(int)(player.pos.x + (player.pos.y+1) * SCREEN_WIDTH)] = 0xff0000;
-	pix[(int)(player.pos.x-1 + player.pos.y * SCREEN_WIDTH)] = 0xff0000;
-	pix[(int)(player.pos.x + (player.pos.y-1) * SCREEN_WIDTH)] = 0xff0000;
+	pix[(int)(player.pos.x * 16 + player.pos.y * 16 * SCREEN_WIDTH)] = 0xff0000;
+	pix[(int)(player.pos.x* 16 + 1 + player.pos.y * 16* SCREEN_WIDTH)] = 0xff0000;
+	pix[(int)(player.pos.x* 16 + (player.pos.y* 16+1) * SCREEN_WIDTH)] = 0xff0000;
+	pix[(int)((player.pos.x* 16-1) + player.pos.y* 16 * SCREEN_WIDTH)] = 0xff0000;
+	pix[(int)(player.pos.x * 16+ (player.pos.y* 16-1) * SCREEN_WIDTH)] = 0xff0000;
 }

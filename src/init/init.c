@@ -6,7 +6,7 @@
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 14:37:54 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/10/03 14:59:03 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/10/08 19:41:50 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,13 @@ short create_renderer_texture_and_pixels(t_data *data)
 
 void set_values(t_data *data)
 {
-	data->player.pos.x = SCREEN_WIDTH /2;
-	data->player.pos.y = SCREEN_HEIGHT / 2;
+	data->player.pos.x = 22;
+	data->player.pos.y = 11.5 ;
 	data->player.dir.x = -1;
 	data->player.dir.y = 0;
 	data->player.plane.x = 0;
 	data->player.plane.y = 1;
-	data->player.rotSpeed = 1;
+	data->player.rotSpeed = 0.01;
 	data->player.walkSpeed = 1;
 	data->edge_nb = 0;
 	data->edges = NULL;

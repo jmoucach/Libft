@@ -6,7 +6,7 @@
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/03 14:55:50 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/10/03 18:07:59 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/10/07 11:54:04 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,21 @@ short new_edge_north(t_data *data, int x, int y)
 	}
 	else
 	{
-		if (!(tmp = (t_edge *)malloc(sizeof(t_edge) * data->edge_nb)))
-			return (0);
-		// while (++i < data->edge_nb - 1)
-			// copy_edge_data(&tmp, data->edges, i);
-			ft_memcpy(tmp, data->edges, data->edge_nb - 1);
-		ft_memdel((void**)&(data->edges));
-		// free(data->edges);
-		printf("here north\n");
-		tmp[data->edge_nb].start.x = (16 * x);
-		tmp[data->edge_nb].start.y = (16 * y);
-		tmp[data->edge_nb].end.x = (16 * (x + 1));
-		tmp[data->edge_nb].end.y = (16 * y);
-		printf("ca casse ici\n");
-		data->edges = tmp;
+		realloc_edge(data);
+		// if (!(tmp = (t_edge *)malloc(sizeof(t_edge) * data->edge_nb)))
+		// 	return (0);
+		// // while (++i < data->edge_nb - 1)
+		// 	// copy_edge_data(&tmp, data->edges, i);
+		// 	ft_memcpy(tmp, data->edges, data->edge_nb - 1);
+		// ft_memdel((void**)&(data->edges));
+		// // free(data->edges);
+		// printf("here north\n");
+		// tmp[data->edge_nb].start.x = (16 * x);
+		// tmp[data->edge_nb].start.y = (16 * y);
+		// tmp[data->edge_nb].end.x = (16 * (x + 1));
+		// tmp[data->edge_nb].end.y = (16 * y);
+		// printf("ca casse ici\n");
+		// data->edges = tmp;
 	}
 	data->map[y][x].edges[NORTH] = data->edge_nb;
 	printf("end north\n");
@@ -84,21 +85,22 @@ short new_edge_south(t_data *data, int x, int y)
 	}
 	else
 	{
-		if (!(tmp = (t_edge *)malloc(sizeof(t_edge) * data->edge_nb)))
-			return (0);
-		// while (++i < data->edge_nb - 1)
-			ft_memcpy(tmp, data->edges, data->edge_nb - 1);
-			//copy_edge_data(&tmp, data->edges, i);
-		printf("here south\n");
-		// free(data->edges);
-		ft_memdel((void**)&(data->edges));
-		printf("flex\n");
-		tmp[data->edge_nb].start.x = (16 * x);
-		tmp[data->edge_nb].start.y = (16 * (y + 1));
-		tmp[data->edge_nb].end.x = (16 * (x + 1));
-		tmp[data->edge_nb].end.y = (16 * (y + 1));
-		printf("ca casse ici\n");
-		data->edges = tmp;
+		realloc_edge(data);
+		// if (!(tmp = (t_edge *)malloc(sizeof(t_edge) * data->edge_nb)))
+		// 	return (0);
+		// // while (++i < data->edge_nb - 1)
+		// 	ft_memcpy(tmp, data->edges, data->edge_nb - 1);
+		// 	//copy_edge_data(&tmp, data->edges, i);
+		// printf("here south\n");
+		// // free(data->edges);
+		// ft_memdel((void**)&(data->edges));
+		// printf("flex\n");
+		// tmp[data->edge_nb].start.x = (16 * x);
+		// tmp[data->edge_nb].start.y = (16 * (y + 1));
+		// tmp[data->edge_nb].end.x = (16 * (x + 1));
+		// tmp[data->edge_nb].end.y = (16 * (y + 1));
+		// printf("ca casse ici\n");
+		// data->edges = tmp;
 	}
 	data->map[y][x].edges[SOUTH] = data->edge_nb;
 	printf("end south\n");
@@ -127,22 +129,23 @@ short new_edge_east(t_data *data, int x, int y)
 	}
 	else
 	{
-		if (!(tmp = (t_edge *)malloc(sizeof(t_edge) * data->edge_nb)))
-			return (0);
-		// while (++i < data->edge_nb - 1)
-		// 	copy_edge_data(&tmp, data->edges, i);
-			ft_memcpy(tmp, data->edges, data->edge_nb - 1);
-		printf("here east\n");
-		// free(data->edges);
-		ft_memdel((void**)&(data->edges));
-		printf("flex\n");
-		tmp[data->edge_nb].start.x = (16 * (x + 1));
-		tmp[data->edge_nb].start.y = (16 * y);
-		tmp[data->edge_nb].end.x = (16 * (x + 1));
-		tmp[data->edge_nb].end.y = (16 * (y + 1));
-		printf("ca casse ici\n");
+		realloc_edge(data);
+	// 	if (!(tmp = (t_edge *)malloc(sizeof(t_edge) * data->edge_nb)))
+	// 		return (0);
+	// 	// while (++i < data->edge_nb - 1)
+	// 	// 	copy_edge_data(&tmp, data->edges, i);
+	// 		ft_memcpy(tmp, data->edges, data->edge_nb - 1);
+	// 	printf("here east\n");
+	// 	// free(data->edges);
+	// 	ft_memdel((void**)&(data->edges));
+	// 	printf("flex\n");
+	// 	tmp[data->edge_nb].start.x = (16 * (x + 1));
+	// 	tmp[data->edge_nb].start.y = (16 * y);
+	// 	tmp[data->edge_nb].end.x = (16 * (x + 1));
+	// 	tmp[data->edge_nb].end.y = (16 * (y + 1));
+	// 	printf("ca casse ici\n");
 
-		data->edges = tmp;
+	// 	data->edges = tmp;
 	}
 	data->map[y][x].edges[EAST] = data->edge_nb;
 	printf("end east\n");
@@ -172,22 +175,23 @@ short new_edge_west(t_data *data, int x, int y)
 	}
 	else
 	{
-		if (!(tmp = (t_edge *)malloc(sizeof(t_edge) * data->edge_nb)))
-			return (0);
-		// while (++i < data->edge_nb)
-		// 	copy_edge_data(&tmp, data->edges, i);
-			ft_memcpy(tmp, data->edges, data->edge_nb - 1);
+		realloc_edge(data);
+		// if (!(tmp = (t_edge *)malloc(sizeof(t_edge) * data->edge_nb)))
+		// 	return (0);
+		// // while (++i < data->edge_nb)
+		// // 	copy_edge_data(&tmp, data->edges, i);
+		// 	ft_memcpy(tmp, data->edges, data->edge_nb - 1);
 
-		printf("here west\n");
-		ft_memdel((void**)&(data->edges));
-		// free(data->edges);
-		printf("flex\n");
-		tmp[data->edge_nb].start.x = (16 * x);
-		tmp[data->edge_nb].start.y = (16 * y);
-		tmp[data->edge_nb].end.x = (16 * x);
-		tmp[data->edge_nb].end.y = (16 * (y + 1));
-		printf("ca casse ici\n");
-		data->edges = tmp;
+		// printf("here west\n");
+		// ft_memdel((void**)&(data->edges));
+		// // free(data->edges);
+		// printf("flex\n");
+		// tmp[data->edge_nb].start.x = (16 * x);
+		// tmp[data->edge_nb].start.y = (16 * y);
+		// tmp[data->edge_nb].end.x = (16 * x);
+		// tmp[data->edge_nb].end.y = (16 * (y + 1));
+		// printf("ca casse ici\n");
+		// data->edges = tmp;
 	}
 	data->map[y][x].edges[WEST] = data->edge_nb;
 	printf("end west\n");

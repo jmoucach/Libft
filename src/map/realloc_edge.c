@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Wolf3d.h                                           :+:      :+:    :+:   */
+/*   realloc_edge.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/19 14:10:43 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/10/08 18:16:44 by jmoucach         ###   ########.fr       */
+/*   Created: 2019/10/07 10:27:54 by jmoucach          #+#    #+#             */
+/*   Updated: 2019/10/07 11:54:39 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WOLF3D_H
-# define WOLF3D_H
+#include "../../hdr/Wolf3d.h"
 
-# include "../SDL2/Headers/SDL.h"
-# include "struct.h"
-# include "proto.h"
-# include "../libft/libft.h"
+void 	realloc_edge(t_data *data)
+{
+	t_edge *tmp;
+	int i;
 
-# include <fcntl.h>
-# include <math.h>
-
-# define SCREEN_WIDTH 640
-# define SCREEN_HEIGHT 480
-
-# define NORTH 0
-# define SOUTH 1
-# define EAST 2
-# define WEST 3
-
-#endif
+	i = 0;
+	tmp = data->edges;
+	if (!(data->edges = (t_edge *)malloc(sizeof(t_edge) * data->edge_nb)))
+		return ;
+	while (++i < data->edge_nb - 1)
+		copy_edge_data(&data->edges, tmp, i);
+	 free(tmp);
+}

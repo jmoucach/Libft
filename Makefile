@@ -6,7 +6,7 @@
 #    By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/04/26 16:03:44 by jmoucach          #+#    #+#              #
-#    Updated: 2019/10/03 17:33:34 by jmoucach         ###   ########.fr        #
+#    Updated: 2019/10/07 14:30:08 by jmoucach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ MAGENTA= \033[35m
 ################################################################################
 NAME= Wolf3d
 CC= gcc
-CFLAGS= -Wall -Wextra -Werror -g
+CFLAGS= -Wall -Wextra -Werror -g 
 SRC_DIR= src/
 SRC= init/main.c\
 	 init/init.c\
@@ -40,6 +40,7 @@ SRC= init/main.c\
 	 map/fill_map.c\
 	 map/new_edge.c\
 	 map/find_edges.c\
+	 map/realloc_edge.c\
 	 raycasting/raycast.c\
 	 game/event_loop.c
 SRCS= $(addprefix $(SRC_DIR),$(SRC))

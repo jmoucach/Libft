@@ -6,7 +6,7 @@
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 14:19:39 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/10/03 15:17:35 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/10/08 19:29:56 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ typedef	struct		s_line_param
 
 typedef	struct		s_player
 {
-	t_d_point		pos;
-	t_d_point		dir;
-	t_d_point		plane;
+	t_d_point		pos; // position du joueur/ camera
+	t_d_point		dir; // direction dans laquelle la camera regarde
+	t_d_point		plane; // plan de projection
 	double			walkSpeed;
 	double			rotSpeed;
 }					t_player;

@@ -6,7 +6,7 @@
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/19 15:03:28 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/10/03 15:23:21 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/10/07 11:52:59 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,5 +99,13 @@ short find_edge_south(t_data *data, int x, int y);
 short find_edge_east(t_data *data, int x, int y);
 short find_edge_west(t_data *data, int x, int y);
 short find_edges(t_data *data);
+
+/*
+** Realloc edge
+*/
+
+void 	realloc_edge(t_data *data);
+// t_edge *realloc_edge(t_edge **edge, int edge_nb);
+
 
 #endif
