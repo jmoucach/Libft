@@ -6,7 +6,7 @@
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/01 14:51:49 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/10/03 14:17:42 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/10/09 11:36:19 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ short parse_map(char *str)
 
 	while (str[i])
 	{
-		if (str[i] != '0' && str[i] != '1' && str[i] != ',')
+		if (str[i] != '0' && str[i] != '1' && str[i] != ',' && str[i] != '2' && str[i] != '3')
 		{
 			ft_putendl_fd("Invalid map data", 2);
 			return (0);
@@ -58,7 +58,7 @@ short fill_map(t_data *data, char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '0' || str[i] == '1')
+		if (str[i] == '0' || str[i] == '1' || str[i] == '2' || str[i] == '3')
 		{
 			data->map[(i / 2) / data->mapSize.x][(i / 2) % data->mapSize.x].value = str[i] - '0';
 		}
