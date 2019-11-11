@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jmoucach <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 15:07:59 by jmoucach          #+#    #+#             */
-/*   Updated: 2018/12/13 16:09:13 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/11/11 10:52:00 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,7 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lt, t_list *(*f)(t_list *elem));
 char				*ft_strrev(char *str);
 int					ft_sqrt(int nb);
+int					ft_abs(int nb);
+char				*ft_replace(char *str, char find, char replace);
 
 #endif
