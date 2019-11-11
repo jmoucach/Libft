@@ -6,7 +6,7 @@
 #    By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 15:49:32 by jmoucach          #+#    #+#              #
-#    Updated: 2019/11/11 10:57:10 by jmoucach         ###   ########.fr        #
+#    Updated: 2019/11/11 11:00:22 by jmoucach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,7 @@ MAGENTA= \033[35m
 ################################################################################
 NAME= libft.a
 CC= gcc
-CFLAGS= -Wall -Wextra -Werror -g -I/Users/jmoucach/.brew/include/SDL2
-SRC_DIR= src/
+CFLAGS= -Wall -Wextra -Werror
 SRC= ./ft_putchar.c\
 	 ./ft_putchar_fd.c\
 	 ./ft_putnbr.c\
@@ -94,7 +93,6 @@ SRC= ./ft_putchar.c\
 	 ./ft_strtrimc.c\
 	 ./ft_strlen_chr.c\
 	 ./ft_abs.c
-<<<<<<< HEAD
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 OBJ_DIR= obj/
 OBJ= $(SRC:.c=.o)
@@ -103,10 +101,6 @@ INCLUDES=	libft.h
 ###############################################################################
 #								Rules										  #
 ###############################################################################
-=======
-OBJ= $(FILE:.c=.o)
-NAME= libft.a
->>>>>>> 29302dff661c518cc45b3bd3b448dead648e1689
 
 all: $(OBJ_DIR) $(NAME)
 

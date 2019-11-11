@@ -6,7 +6,7 @@
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 15:07:59 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/11/11 10:52:00 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/11/11 11:00:57 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,12 +83,8 @@ void				ft_lstadd(t_list **alst, t_list *news);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lt, t_list *(*f)(t_list *elem));
 char				*ft_strrev(char *str);
-<<<<<<< HEAD
 int					ft_sqrt(int nb);
 int					ft_abs(int nb);
 char				*ft_replace(char *str, char find, char replace);
-=======
-double				ft_abs(double nb);
->>>>>>> 29302dff661c518cc45b3bd3b448dead648e1689
 
 #endif
