@@ -79,12 +79,16 @@ int					ft_memcmp(const void *s1, const void *s2, size_t n);
 t_list				*ft_lstnew(const void *content, size_t content_size);
 void				ft_lstdelone(t_list **alst, void(*del)(void *, size_t));
 void				ft_lstdel(t_list **alst, void(*del)(void *, size_t));
-void				ft_lstadd(t_list **alst, t_list *new);
+void				ft_lstadd(t_list **alst, t_list *news);
 void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lt, t_list *(*f)(t_list *elem));
 char				*ft_strrev(char *str);
+<<<<<<< HEAD
 int					ft_sqrt(int nb);
 int					ft_abs(int nb);
 char				*ft_replace(char *str, char find, char replace);
+=======
+double				ft_abs(double nb);
+>>>>>>> 29302dff661c518cc45b3bd3b448dead648e1689
 
 #endif
