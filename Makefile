@@ -6,7 +6,7 @@
 #    By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/07 15:49:32 by jmoucach          #+#    #+#              #
-#    Updated: 2019/11/11 11:00:22 by jmoucach         ###   ########.fr        #
+#    Updated: 2019/11/11 16:34:00 by jmoucach         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,8 @@ SRC= ./ft_putchar.c\
 	 ./ft_replace.c\
 	 ./ft_strtrimc.c\
 	 ./ft_strlen_chr.c\
-	 ./ft_abs.c
+	 ./ft_abs.c\
+	 ./ft_htoi.c
 SRCS= $(addprefix $(SRC_DIR),$(SRC))
 OBJ_DIR= obj/
 OBJ= $(SRC:.c=.o)

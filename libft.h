@@ -6,7 +6,7 @@
 /*   By: jmoucach <jmoucach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/07 15:07:59 by jmoucach          #+#    #+#             */
-/*   Updated: 2019/11/11 11:00:57 by jmoucach         ###   ########.fr       */
+/*   Updated: 2019/11/11 16:33:48 by jmoucach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,5 +86,7 @@ char				*ft_strrev(char *str);
 int					ft_sqrt(int nb);
 int					ft_abs(int nb);
 char				*ft_replace(char *str, char find, char replace);
+int					ft_htoi(char *hex);
+
 
 #endif
