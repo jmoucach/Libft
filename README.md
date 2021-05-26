@@ -4,7 +4,7 @@
 
 The libft is a library of little usefull functions written in the programming language C. That I am required to use for my projects for the 42 school.
 
-## List of the function is libft
+## List of the function in libft
 
 ### Libc function remakes:
 
