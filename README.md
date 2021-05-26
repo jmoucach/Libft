@@ -8,7 +8,7 @@ The libft is a library of little usefull functions written in the programming la
 
 ### Libc function remakes:
 
-* ft_memset: Fils the given memory with the given constant byte.
+* ft_memset: Fills the given memory with the given constant byte.
   ``` C
   void *ft_memset(void *s, int c, size_t n);
   ```
