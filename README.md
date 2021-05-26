@@ -127,7 +127,7 @@ The libft is a library of little usefull functions written in the programming la
   ```
 * ft_strnew: Allocates and returns a “fresh” string ending with ’\0’. Each character of the string is initialized at ’\0’. If the allocation fails the function returns NULL.
    ``` C
-   void ft_strnew(size_t size);
+   char *ft_strnew(size_t size);
    ```
  * ft_strdel: Takes as a parameter the address of a string that needs to be freed then set its pointer to NULL.
   ``` C
