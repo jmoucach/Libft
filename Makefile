@@ -106,32 +106,36 @@ INCLUDES=	libft.h
 all: $(OBJ_DIR) $(NAME)
 
 $(NAME): $(OBJS)
-	@ echo "$(YELLOW)Creating $@ executable$(WHITE)"
+	@ echo "$(GREEN)Creating $@ executable$(WHITE)"
 	@ ar rc $(NAME) $(OBJS)
 	@ ranlib $(NAME)
-	@echo "$(GREEN)$@ executable created$(WHITE)"
 
 $(OBJ_DIR):
-	mkdir $(OBJ_DIR)
+	mkdir -p $(OBJ_DIR)
 
 $(OBJ_DIR)%.o: %.c $(INCLUDES) Makefile
 	@ $(CC) -o $@ -c $< $(CFLAGS)
 	@ echo "$(GREEN)[✔]$(WHITE)$@"
 
 clean:
-	@ echo "$(YELLOW)Deleting objectps$(WHITE)"
-	@ for i in $(OBJ); do \
+ifneq ($(wildcard $(OBJ_DIR)*.o), )
+	@ echo "$(YELLOW)Deleting objects$(WHITE)"
+	@ for i in $(wildcard $(OBJ_DIR)*.o); do \
 		echo "$(RED)- Deleting $$i$(WHITE)"; \
 	done;
 	@ echo "$(GREEN)Objects deleted$(WHITE)"
 	@ rm -rf $(OBJS)
+endif
 
 fclean: clean
-	@ echo "$(YELLOW)Deleting obj directory$(WHITE)"
-	@ rm -rf obj
-	@ echo "$(GREEN)Obj directory deleted$(WHITE)"
-	@ echo "$(GREEN)Executable deleted$(WHITE)"
+ifneq ($(wildcard $(OBJ_DIR)/), )
+	@ echo "$(YELLOW)Deleting obj directory...$(WHITE)"
+	@ rm -rf $(wildcard $(OBJ_DIR))
+endif
+ifneq ($(wildcard $(NAME)), )
 	@ rm -rf $(NAME)
+	@ echo "$(GREEN)Executable deleted$(WHITE)"
+endif
 
 re: fclean all
 
