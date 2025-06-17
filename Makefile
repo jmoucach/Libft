@@ -122,9 +122,9 @@ ifneq ($(wildcard $(OBJ_DIR)*.o), )
 	@ echo "$(YELLOW)Deleting objects$(WHITE)"
 	@ for i in $(wildcard $(OBJ_DIR)*.o); do \
 		echo "$(RED)- Deleting $$i$(WHITE)"; \
+		rm -rf $i;\
 	done;
 	@ echo "$(GREEN)Objects deleted$(WHITE)"
-	@ rm -rf $(OBJS)
 endif
 
 fclean: clean
