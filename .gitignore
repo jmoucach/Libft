@@ -1,2 +1,6 @@
 .vscode/settings.json
-.vscode/launch.json
+.vscode/launch.
+
+libft.a
+obj/*.o
+obj/
